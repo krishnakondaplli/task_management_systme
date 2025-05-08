@@ -1,7 +1,7 @@
 import app from "./app.js";
 import "./models/index.js";
 import { sequelize } from "./models/index.js";
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 await sequelize.sync({ alter: true }); // WARNING: modifies DB schema automatically
 
 app.get("/", (req, res) => {
