@@ -11,8 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin:
-      "http://localhost:https://task-management-system-flame-theta.vercel.app/",
+    origin: "https://task-management-system-flame-theta.vercel.app/",
     credentials: true,
   })
 );
