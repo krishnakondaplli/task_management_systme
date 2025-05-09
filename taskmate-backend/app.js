@@ -9,23 +9,32 @@ dotenv.config();
 
 const app = express();
 
-// ✅ CORS Configuration
-const corsOptions = {
-  origin: "https://task-management-system-flame-theta.vercel.app", // no trailing slash!
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  credentials: true,
-};
+const allowedOrigins = [
+  "https://task-management-system-flame-theta.vercel.app",
+  "https://task-management-system-730hnka47-krishnakondapllis-projects.vercel.app",
+];
 
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
-// ✅ Routes
+// Health check route
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
-
-// ✅ Sequelize DB Sync
-sequelize.sync().then(() => {
-  console.log("DB synced");
-});
 
 export default app;
