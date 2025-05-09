@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_TASK_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const fetchTask = async (filter = {}) => {
   const token = localStorage.getItem("token");
@@ -10,7 +10,7 @@ export const fetchTask = async (filter = {}) => {
 
   const params = new URLSearchParams(cleanFilter).toString();
 
-  const res = await fetch(`${API_URL}/tasks?${params.toString()}`, {
+  const res = await fetch(`${API_URL}/api/tasks?${params.toString()}`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -24,7 +24,7 @@ export const createTask = async (task) => {
 
   // console.log("Token extracted:", token);
 
-  const res = await fetch(`${API_URL}/tasks`, {
+  const res = await fetch(`${API_URL}/api/tasks`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const createTask = async (task) => {
 
 export const updateTask = async (id, updates) => {
   const token = localStorage.getItem("token");
-  const res = await fetch(`${API_URL}/tasks/${id}`, {
+  const res = await fetch(`${API_URL}/api/tasks/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const updateTask = async (id, updates) => {
 
 export const deleteTask = async (id) => {
   const token = localStorage.getItem("token");
-  const res = await fetch(`${API_URL}/tasks/${id}`, {
+  const res = await fetch(`${API_URL}/api/tasks/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
   });
