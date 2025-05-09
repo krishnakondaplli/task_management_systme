@@ -11,6 +11,7 @@ export const fetchTask = async (filter = {}) => {
   const params = new URLSearchParams(cleanFilter).toString();
 
   const res = await fetch(`${API_URL}/tasks?${params.toString()}`, {
+    method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
   // console.log(`${API_URL}/tasks?${params.toString()}`);
