@@ -8,8 +8,8 @@ Task.belongsTo(User, { foreignKey: "userId", as: "creator" });
 User.hasMany(Task, { foreignKey: "userId", as: "createdTasks" });
 
 // Task → User (Assigned To)
-Task.belongsTo(User, { foreignKey: "assignedTo", as: "assignedUser" });
-User.hasMany(Task, { foreignKey: "assignedTo", as: "assignedTasks" });
+// Task.belongsTo(User, { foreignKey: "assignedTo", as: "assignedUser" });
+// User.hasMany(Task, { foreignKey: "assignedTo", as: "assignedTasks" });
 
 // Notification ↔ User
 User.hasMany(Notification, { foreignKey: "userId", as: "notifications" });

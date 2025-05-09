@@ -4,8 +4,7 @@ import { Task } from "../models/Task.js";
 //Create Task
 export const createTask = async (req, res) => {
   try {
-    const { title, description, dueDate, priority, status, assignedTo } =
-      req.body;
+    const { title, description, dueDate, priority, status } = req.body;
 
     const task = await Task.create({
       title,
@@ -15,7 +14,6 @@ export const createTask = async (req, res) => {
       status,
       userId: req.user.id,
       createdBy: req.user.id,
-      assignedTo,
     });
     return res.status(201).json(task);
   } catch (err) {

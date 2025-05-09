@@ -15,6 +15,6 @@ export const Task = sequelize.define("Task", {
     defaultValue: "pending",
   },
   userId: { type: DataTypes.INTEGER, allowNull: false }, // foreign key
-  assignedTo: { type: DataTypes.INTEGER, allowNull: true }, // receiver
+  // assignedTo: { type: DataTypes.INTEGER, allowNull: true }, // receiver
   createdBy: DataTypes.INTEGER, // user who created the task
 });
